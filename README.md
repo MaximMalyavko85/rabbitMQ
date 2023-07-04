@@ -35,13 +35,13 @@
 ### По смыслу - одни сервисы знают, куда писать сообщения, а вторые сервисы знают откуда читать
 ##### технологии: Amazon MQ, Apache Kafka, RabbitMQ, Message Bus, Apollo
 ##### протоколы: MQ, XMPP, WTF, MQTT, STOMP ...
-
+___
 #### Обменник (exchenge)
 #### Очередь (name, duration, auto-delete, arguments (TTL message))
 #### Routing key (связь или маршрут)
 
 Publisher ---> exchange ---> routing key ---> queue ---> consumer
-
+___
 ### Установить сервис локально (как service)
 
 rabitMq написан на языке Erlang (должна быть установлена последняя версия)
