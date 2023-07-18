@@ -1,5 +1,5 @@
 const amqplib = require('amqplib/callback_api');
-const queue = 'topic_logs-1';
+const queue = 'logExchanger';
 
 amqplib.connect('amqp://localhost', (err, conn) => { 
   if (err) throw err;
@@ -8,11 +8,13 @@ amqplib.connect('amqp://localhost', (err, conn) => {
   conn.createChannel((err, ch2) => {
     if (err) throw err;
 
-    ch2.assertExchange(queue, 'topic', {durable: true});
+    ch2.assertExchange(queue, 'direct'); //logExchanger
     ch2.assertQueue(queue, {durable: true});
 
-    const routingKey = '';
+    const routingKey = 'info';
     ch2.bindQueue(queue, queue, routingKey); //creating binding
+
+    ch2.prefetch(1);
 
     ch2.consume(queue, (msg) => {
       if (msg !== null) {
